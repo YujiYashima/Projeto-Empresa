@@ -1,8 +1,8 @@
 create table PESSOA(
 
-	idpessoa serial not null,
-	nomepessoa varchar(50),
-	telefonepessoa varchar(11),
+	idPessoa serial not null,
+	nomePessoa varchar(50),
+	telefonePessoa varchar(11),
 	constraint pk_pessoa primary key(idpessoa)
 
 );
@@ -10,12 +10,12 @@ create table PESSOA(
 
 create table PESSOAJURIDICA(
 
-	idpessoajuridica serial not null,
-	cnpjpessoajuridica varchar(14),
-	iepessoajuridica varchar(10),
-        tipopessoajuridica varchar(10),
-	idpessoa integer,
-	constraint pk_pessoajuridica primary key(idpessoajuridica),
-	constraint fk_pj_pessoa foreign key(idpessoa) references pessoa(idpessoa)
+	idPessoaJuridica serial not null,
+	cnpjPessoaJuridica varchar(14),
+	iePessoaJuridica varchar(10),
+        tipoPessoaJuridica varchar(10),
+	idPessoa integer,
+	constraint pk_pessoaJuridica primary key(idPessoaJuridica),
+	constraint fk_pj_pessoa foreign key(idPessoa) references pessoa(idPessoa)
 );
 
