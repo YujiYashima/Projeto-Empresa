@@ -49,11 +49,20 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td align="center" colspan="2"><a href="index.jsp">Voltar</a></td>
-                </tr>
-
             </table>
-        </form>
-    </body>
+        </form><br>
+
+    <center>
+        <tr>
+            <td align="center" colspan="9"><a href="ListarPessoaJuridica">Listar</a></td>
+        </tr>
+    </center><br>
+
+    <center>
+        <tr>
+            <td align="center" colspan="2"><a href="index.jsp">Home</a></td>
+        </tr>
+    </center>
+
+</body>
 </html>

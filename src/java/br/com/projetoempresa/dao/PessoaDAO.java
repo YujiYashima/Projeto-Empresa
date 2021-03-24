@@ -62,4 +62,27 @@ public class PessoaDAO {
         
         return idPessoa;    
     }
+    
+    public Boolean excluir(int idObject) {
+        PreparedStatement stmt = null;
+        String sql = "delete from Pessoa where idPessoa = ?";
+        
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idObject);
+            stmt.executeUpdate();
+            
+            return true;
+            
+        } catch (Exception ex) {
+            System.out.println("Problemas ao excluir PessoaDAO! Erro " + ex.getMessage());
+            return false;
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, stmt);
+            } catch (Exception ex) {
+                System.out.println("Problemas ao fechar conexão! Erro: " + ex.getMessage());
+            }
+        }
+    }
 }
