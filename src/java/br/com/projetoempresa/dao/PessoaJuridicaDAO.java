@@ -177,4 +177,38 @@ public class PessoaJuridicaDAO implements GenericDAO {
         return pessoaJuridica;
     }
 
+    @Override
+    public Boolean alterar(Object object) {
+        
+        PessoaJuridica pessoaJuridica = (PessoaJuridica) object;
+        PreparedStatement stmt = null;
+        String sql = "update pessoajuridica set cnpjPessoaJuridica = ?, iePessoaJuridica = ?, tipoPessoaJuridica = ? where idpessoa = ?;";
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, pessoaJuridica.getCnpjPessoaJuridica());
+            stmt.setString(2, pessoaJuridica.getIePessoaJuridica());
+            stmt.setString(3, pessoaJuridica.getTipoPessoaJuridica());
+            stmt.setInt(4, pessoaJuridica.getIdPessoa());
+            if (new PessoaDAO().alterar(pessoaJuridica)) {
+                stmt.executeUpdate();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            System.out.println("Problemas ao alterar pessoaJuridica! Erro: "
+                    + ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, stmt);
+            } catch (Exception e) {
+                System.out.println("Problemas ao fechar a conexão! Erro: "
+                        + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

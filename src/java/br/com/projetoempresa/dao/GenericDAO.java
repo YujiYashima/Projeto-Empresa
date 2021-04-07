@@ -14,4 +14,6 @@ public interface GenericDAO {
     
     public Object carregar(int idObject);
     
+    public Boolean alterar(Object object);
+    
 }

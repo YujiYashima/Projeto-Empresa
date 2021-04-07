@@ -5,6 +5,7 @@ import br.com.projetoempresa.util.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PessoaDAO {
 
@@ -85,4 +86,31 @@ public class PessoaDAO {
             }
         }
     }
+    
+    public Boolean alterar(Pessoa pessoa) {
+        PreparedStatement stmt = null;
+
+        String sql = "update pessoa set nomepessoa = ?, "
+                + "telefonepessoa = ? where idpessoa = ?;";
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, pessoa.getNomePessoa());
+            stmt.setString(2, pessoa.getTelefonePessoa());
+            stmt.setInt(3, pessoa.getIdPessoa());
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println("Problemas ao alterar PessoaDAO! Erro" + ex.getMessage());
+            return false;
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, stmt);
+            } catch (Exception ex) {
+                System.out.println("Problemas ao fechar os perâmetros de conexão! Erro" + ex.getMessage());
+            }
+        }
+    }
+    
 }

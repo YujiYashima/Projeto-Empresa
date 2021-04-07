@@ -7,6 +7,7 @@ package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaDAO;
+import br.com.projetoempresa.model.PessoaJuridica;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aluno
  */
-@WebServlet(name = "CarregarPessoaJuridica", urlPatterns = {"/CarregarPessoaJuridica"})
-public class CarregarPessoaJuridica extends HttpServlet {
+@WebServlet(name = "AlterarPessoaJuridica", urlPatterns = {"/AlterarPessoaJuridica"})
+public class AlterarPessoaJuridica extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +36,41 @@ public class CarregarPessoaJuridica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-            int idPessoaJuridica = Integer.parseInt(request.getParameter("idPessoa"));
             
-            try{
+            Integer idPessoaJuridica = Integer.parseInt(request.getParameter("idPessoaJuridica"));
+            Integer idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
+            String nomePessoaJuridica = request.getParameter("nomePessoaJuridica");
+            String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
+            String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
+            String iePessoaJuridica = request.getParameter("iePessoaJuridica");
+            String tipoPessoaJuridica = request.getParameter("tipoPessoaJuridica");
+           
+            String mensagem = null;
+
+            PessoaJuridica pessoaJuridica = new PessoaJuridica();
+            pessoaJuridica.setIdPessoaJuridica(idPessoaJuridica);
+            pessoaJuridica.setNomePessoa(nomePessoaJuridica);
+            pessoaJuridica.setTelefonePessoa(telefonePessoaJuridica);
+            pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
+            pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
+            pessoaJuridica.setTipoPessoaJuridica(tipoPessoaJuridica);
+            pessoaJuridica.setIdPessoa(idPessoa);
+
+            try {
                 GenericDAO dao = new PessoaJuridicaDAO();
-                request.setAttribute("pessoaJuridica", dao.carregar(idPessoaJuridica));
-                //Verei se crio uma nova pagina ou se uso o própio cadastrar
-                request.getRequestDispatcher("alterar-pessoajuridica.jsp").forward(request, response);
-            }catch(Exception e){
-                System.out.println("Problemas ao carregar PessoaJuridica CTR! Erro: " + e.getMessage());
+                if (dao.alterar(pessoaJuridica)) {
+                    mensagem = "PessoaJuridica alterado com sucesso.";
+                } else {
+                    mensagem = "Problemas ao alterar PessoaJuridica.";
+                }
+                request.setAttribute("mensagem", mensagem);
+                request.getRequestDispatcher("ListarPessoaJuridica").forward(request, response);
+
+            } catch (Exception e) {
+                System.out.println("Problemas no Servlet ao alterar PessoaJuridica CTR! Erro: "
+                        + e.getMessage());
                 e.printStackTrace();
+        
             }
         }
     }
