@@ -16,7 +16,7 @@
         <br>
         <hr>
         <h2 align="center">Controle de Pessoas Jurídicas</h2>
-        <p align="center"><a href="cadastrar-pessoajuridica.jsp">Cadastrar PessoasJurídicas</a></p>
+        <p align="center"><a href="TipoPessoaJuridica">Cadastrar PessoasJurídicas</a></p>
         <hr>
     </body>
 </html>

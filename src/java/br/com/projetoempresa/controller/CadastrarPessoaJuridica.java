@@ -37,7 +37,7 @@ public class CadastrarPessoaJuridica extends HttpServlet {
             String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
             String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
             String iePessoaJuridica = request.getParameter("iePessoaJuridica");
-            String tipoPessoaJuridica = request.getParameter("tipoPessoaJuridica");
+            Integer idTipoPessoaJuridica = Integer.parseInt(request.getParameter("idTipoPessoaJuridica"));
             
             //Incicializar variavel de mensagem
             String msg = null;
@@ -48,7 +48,7 @@ public class CadastrarPessoaJuridica extends HttpServlet {
             pessoaJuridica.setTelefonePessoa(telefonePessoaJuridica);
             pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
             pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
-            pessoaJuridica.setTipoPessoaJuridica(tipoPessoaJuridica);
+            pessoaJuridica.setTipoPessoaJuridica(new br.com.projetoempresa.model.TipoPessoaJuridica(idTipoPessoaJuridica));
             
             //Cadastrar uma PessoaJuridica na DAO
             try {

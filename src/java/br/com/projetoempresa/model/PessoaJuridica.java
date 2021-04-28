@@ -7,20 +7,18 @@ public class PessoaJuridica extends Pessoa{
     private int idPessoaJuridica;
     private String cnpjPessoaJuridica;
     private String iePessoaJuridica;
-    private String tipoPessoaJuridica;
+    private TipoPessoaJuridica tipoPessoaJuridica;
 
-    //Construtores Vazio e Cheio
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, String tipoPessoaJuridica) {
+    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, TipoPessoaJuridica tipoPessoaJuridica) {
         this.idPessoaJuridica = idPessoaJuridica;
         this.cnpjPessoaJuridica = cnpjPessoaJuridica;
         this.iePessoaJuridica = iePessoaJuridica;
         this.tipoPessoaJuridica = tipoPessoaJuridica;
     }
 
-    //Metodo acessores Get e Set
     public int getIdPessoaJuridica() {
         return idPessoaJuridica;
     }
@@ -45,12 +43,16 @@ public class PessoaJuridica extends Pessoa{
         this.iePessoaJuridica = iePessoaJuridica;
     }
 
-    public String getTipoPessoaJuridica() {
+    public TipoPessoaJuridica getTipoPessoaJuridica() {
         return tipoPessoaJuridica;
     }
 
-    public void setTipoPessoaJuridica(String tipoPessoaJuridica) {
+    public void setTipoPessoaJuridica(TipoPessoaJuridica tipoPessoaJuridica) {
         this.tipoPessoaJuridica = tipoPessoaJuridica;
+    }
+
+    public void setTipoPessoaJuridica(Integer idTipoPessoaJuridica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

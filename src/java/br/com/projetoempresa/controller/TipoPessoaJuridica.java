@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
-import br.com.projetoempresa.dao.PessoaJuridicaDAO;
-import br.com.projetoempresa.model.PessoaJuridica;
+import br.com.projetoempresa.dao.TipoPessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +14,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aluno
  */
-@WebServlet(name = "AlterarPessoaJuridica", urlPatterns = {"/AlterarPessoaJuridica"})
-public class AlterarPessoaJuridica extends HttpServlet {
+@WebServlet(name = "TipoPessoaJuridica", urlPatterns = {"/TipoPessoaJuridica"})
+public class TipoPessoaJuridica extends HttpServlet {
+
+    TipoPessoaJuridica(Integer idTipoPessoaJuridica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,38 +35,12 @@ public class AlterarPessoaJuridica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            Integer idPessoaJuridica = Integer.parseInt(request.getParameter("idPessoaJuridica"));
-            Integer idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
-            String nomePessoaJuridica = request.getParameter("nomePessoaJuridica");
-            String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
-            String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
-            String iePessoaJuridica = request.getParameter("iePessoaJuridica");
-           
-            String mensagem = null;
-
-            PessoaJuridica pessoaJuridica = new PessoaJuridica();
-            pessoaJuridica.setIdPessoaJuridica(idPessoaJuridica);
-            pessoaJuridica.setNomePessoa(nomePessoaJuridica);
-            pessoaJuridica.setTelefonePessoa(telefonePessoaJuridica);
-            pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
-            pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
-            pessoaJuridica.setIdPessoa(idPessoa);
-
-            try {
-                GenericDAO dao = new PessoaJuridicaDAO();
-                if (dao.alterar(pessoaJuridica)) {
-                    mensagem = "PessoaJuridica alterado com sucesso.";
-                } else {
-                    mensagem = "Problemas ao alterar PessoaJuridica.";
-                }
-                request.setAttribute("mensagem", mensagem);
-                request.getRequestDispatcher("ListarPessoaJuridica").forward(request, response);
-
-            } catch (Exception e) {
-                System.out.println("Problemas no Servlet ao alterar PessoaJuridica CTR! Erro: "
-                        + e.getMessage());
-                e.printStackTrace();
-        
+            try{
+                GenericDAO dao = new TipoPessoaJuridicaDAO();
+                request.setAttribute("tipos", dao.listar());
+                request.getRequestDispatcher("cadastrar-pessoajuridica.jsp").forward(request, response);
+            }catch(Exception e){
+                System.out.println("Problemas ao carregas os dados dos TipoPessoaJuridica CTR! Erro: " + e.getMessage());
             }
         }
     }

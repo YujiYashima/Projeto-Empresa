@@ -38,10 +38,15 @@
                     <td><input type="text" name="iePessoaJuridica"></td>
                 </tr>
 
-                <tr>
-                    <td>Tipo:</td>
-                    <td><input type="text" name="tipoPessoaJuridica" required="true"></td>
-                </tr>
+                <td>Tipo:</td>
+                <td>
+                    <select name="idTipoPessoaJuridica">
+                        <c:forEach var="tipo" items="${tipos}">
+                            <option value="${tipo.idTipoPessoaJuridica}">
+                                ${tipo.nomeTipoPessoaJuridica}</option>
+                        </c:forEach>
+                    </select>
+                </td>
 
                 <tr>
                     <td colspan="2" align="center">

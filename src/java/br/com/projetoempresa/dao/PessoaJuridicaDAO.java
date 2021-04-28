@@ -41,7 +41,7 @@ public class PessoaJuridicaDAO implements GenericDAO {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, pessoaJuridica.getCnpjPessoaJuridica());
             stmt.setString(2, pessoaJuridica.getIePessoaJuridica());
-            stmt.setString(3, pessoaJuridica.getTipoPessoaJuridica());
+            stmt.setString(3, pessoaJuridica.getTipoPessoaJuridica().getNomeTipoPessoaJuridica());
             //Obtem o codigo da PessoaDAO, apos cadastrar nela o objeto pessoaJuridica 
             stmt.setInt(4, new PessoaDAO().cadastrar(pessoaJuridica));
             stmt.execute();
@@ -89,7 +89,7 @@ public class PessoaJuridicaDAO implements GenericDAO {
                 pessoaJuridica.setTelefonePessoa(rs.getString("telefonePessoa"));
                 pessoaJuridica.setCnpjPessoaJuridica(rs.getString("cnpjPessoaJuridica"));
                 pessoaJuridica.setIePessoaJuridica(rs.getString("iePessoaJuridica"));
-                pessoaJuridica.setTipoPessoaJuridica(rs.getString("tipoPessoaJuridica"));
+                //pessoaJuridica.setTipoPessoaJuridica(rs.getTipoPessoaJuridica("tipoPessoaJurdica"));
                 pessoaJuridica.setIdPessoa(rs.getInt("idPessoa"));
                 
                 pessoasJuridicas.add(pessoaJuridica);
@@ -160,7 +160,7 @@ public class PessoaJuridicaDAO implements GenericDAO {
                 pessoaJuridica.setTelefonePessoa(rs.getString("telefonepessoa"));
                 pessoaJuridica.setCnpjPessoaJuridica(rs.getString("cnpjPessoaJuridica"));
                 pessoaJuridica.setIePessoaJuridica(rs.getString("iePessoaJuridica"));
-                pessoaJuridica.setTipoPessoaJuridica(rs.getString("tipoPessoaJuridica"));
+                //pessoaJuridica.setTipoPessoaJuridica(rs.getString("tipoPessoaJuridica"));
                 pessoaJuridica.setIdPessoa(rs.getInt("idPessoa"));
             }
         } catch (SQLException ex) {
@@ -182,13 +182,12 @@ public class PessoaJuridicaDAO implements GenericDAO {
         
         PessoaJuridica pessoaJuridica = (PessoaJuridica) object;
         PreparedStatement stmt = null;
-        String sql = "update pessoajuridica set cnpjPessoaJuridica = ?, iePessoaJuridica = ?, tipoPessoaJuridica = ? where idpessoa = ?;";
+        String sql = "update pessoajuridica set cnpjPessoaJuridica = ?, iePessoaJuridica = ? where idpessoa = ?;";
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, pessoaJuridica.getCnpjPessoaJuridica());
             stmt.setString(2, pessoaJuridica.getIePessoaJuridica());
-            stmt.setString(3, pessoaJuridica.getTipoPessoaJuridica());
-            stmt.setInt(4, pessoaJuridica.getIdPessoa());
+            stmt.setInt(3, pessoaJuridica.getIdPessoa());
             if (new PessoaDAO().alterar(pessoaJuridica)) {
                 stmt.executeUpdate();
                 return true;
