@@ -43,6 +43,7 @@ public class AlterarPessoaJuridica extends HttpServlet {
             String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
             String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
             String iePessoaJuridica = request.getParameter("iePessoaJuridica");
+            String tipoPessoaJuridica = request.getParameter("tipoPessoaJuridica");
            
             String mensagem = null;
 
@@ -53,6 +54,7 @@ public class AlterarPessoaJuridica extends HttpServlet {
             pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
             pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
             pessoaJuridica.setIdPessoa(idPessoa);
+            pessoaJuridica.setTipoPessoaJuridica(tipoPessoaJuridica);
 
             try {
                 GenericDAO dao = new PessoaJuridicaDAO();

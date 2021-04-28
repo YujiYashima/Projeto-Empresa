@@ -7,12 +7,12 @@ public class PessoaJuridica extends Pessoa{
     private int idPessoaJuridica;
     private String cnpjPessoaJuridica;
     private String iePessoaJuridica;
-    private TipoPessoaJuridica tipoPessoaJuridica;
+    private String tipoPessoaJuridica;
 
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, TipoPessoaJuridica tipoPessoaJuridica) {
+    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, String tipoPessoaJuridica) {
         this.idPessoaJuridica = idPessoaJuridica;
         this.cnpjPessoaJuridica = cnpjPessoaJuridica;
         this.iePessoaJuridica = iePessoaJuridica;
@@ -43,16 +43,12 @@ public class PessoaJuridica extends Pessoa{
         this.iePessoaJuridica = iePessoaJuridica;
     }
 
-    public TipoPessoaJuridica getTipoPessoaJuridica() {
+    public String getTipoPessoaJuridica() {
         return tipoPessoaJuridica;
     }
 
-    public void setTipoPessoaJuridica(TipoPessoaJuridica tipoPessoaJuridica) {
+    public void setTipoPessoaJuridica(String tipoPessoaJuridica) {
         this.tipoPessoaJuridica = tipoPessoaJuridica;
-    }
-
-    public void setTipoPessoaJuridica(Integer idTipoPessoaJuridica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
