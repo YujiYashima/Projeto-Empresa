@@ -57,7 +57,7 @@
 
     <center>
         <tr>
-            <td align="center" colspan="9"><a href="cadastrar-pessoajuridica.jsp">Cadastrar Outro</a></td>
+            <td align="center" colspan="9"><a href="TipoPessoaJuridica">Cadastrar Outro</a></td>
         </tr>
     </center><br>
 

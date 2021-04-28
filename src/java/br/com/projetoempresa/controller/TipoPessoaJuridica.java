@@ -1,9 +1,7 @@
 package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
-import br.com.projetoempresa.dao.PessoaJuridicaDAO;
-import br.com.projetoempresa.model.PessoaJuridica;
-import br.com.projetoempresa.model.TipoPessoaJuridica;
+import br.com.projetoempresa.dao.TipoPessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author AlunoRemoto
+ * @author Yuji adm
  */
-@WebServlet(name = "CadastrarPessoaJuridica", urlPatterns = {"/CadastrarPessoaJuridica"})
-public class CadastrarPessoaJuridica extends HttpServlet {
+@WebServlet(name = "TipoPessoaJuridica", urlPatterns = {"/TipoPessoaJuridica"})
+public class TipoPessoaJuridica extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,40 +31,12 @@ public class CadastrarPessoaJuridica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            //Obter os valores digitados no formulário
-            String nomePessoaJuridica = request.getParameter("nomePessoaJuridica");
-            String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
-            String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
-            String iePessoaJuridica = request.getParameter("iePessoaJuridica");
-            Integer idTipoPessoaJuridica = Integer.parseInt(request.getParameter("idTipoPessoaJuridica"));
-            
-            //Incicializar variavel de mensagem
-            String msg = null;
-            
-            //Inicializar objeto e atribuir valores a ele
-            PessoaJuridica pessoaJuridica = new PessoaJuridica();
-            pessoaJuridica.setNomePessoa(nomePessoaJuridica);
-            pessoaJuridica.setTelefonePessoa(telefonePessoaJuridica);
-            pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
-            pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
-            pessoaJuridica.setTipoPessoaJuridica(new TipoPessoaJuridica(idTipoPessoaJuridica));
-            
-            //Cadastrar uma PessoaJuridica na DAO
-            try {
-                GenericDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
-                if (pessoaJuridicaDAO.cadastrar(pessoaJuridica)) {
-                    //Se o cadastro for um sucesso, ele retornar TRUE
-                    msg = "Usuário cadastrado com sucesso!";
-                } else {
-                    //Senao retorna FALSE
-                    msg = "Problemas ao cadastrar PessoaJuridica. "
-                            + "Verifique os dados informados e tente novamente!";
-                }
-                request.setAttribute("mensagem", msg);
+            try{
+                GenericDAO dao = new TipoPessoaJuridicaDAO();
+                request.setAttribute("tipos", dao.listar());
                 request.getRequestDispatcher("cadastrar-pessoajuridica.jsp").forward(request, response);
-            } catch (Exception ex) {
-                System.out.println("Problemas ao cadastrar PessoaJurídica CTR! Erro: " + ex.getMessage());
-                ex.printStackTrace();
+            }catch(Exception e){
+                System.out.println("Problemas ao carregas os dados dos TipoPessoaJuridica CTR! Erro: " + e.getMessage());
             }
         }
     }

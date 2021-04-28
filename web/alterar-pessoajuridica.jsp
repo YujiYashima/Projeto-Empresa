@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -54,6 +55,17 @@
                 <tr>
                     <td>Tipo:</td>
                     <td><input type="text" name="tipoPessoaJuridica" value="${pessoaJuridica.tipoPessoaJuridica}"></td>
+                </tr>
+                
+                <tr>
+                    <td>Tipo:</td>
+                    <td>
+                        <select name="idTipoPessoaJuridica">
+                            <c:forEach var="tipo" items="${tipos}">
+                                <option value="${tipo.idTipoPessoaJuridica}">${tipo.nomeTipoPessoaJuridica}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 
                 <tr>

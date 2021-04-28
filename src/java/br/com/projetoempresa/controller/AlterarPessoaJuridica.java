@@ -8,6 +8,7 @@ package br.com.projetoempresa.controller;
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaDAO;
 import br.com.projetoempresa.model.PessoaJuridica;
+import br.com.projetoempresa.model.TipoPessoaJuridica;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -43,7 +44,7 @@ public class AlterarPessoaJuridica extends HttpServlet {
             String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
             String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
             String iePessoaJuridica = request.getParameter("iePessoaJuridica");
-            String tipoPessoaJuridica = request.getParameter("tipoPessoaJuridica");
+            Integer idTipoPessoaJuridica = Integer.parseInt(request.getParameter("idTipoPessoaJuridica"));
            
             String mensagem = null;
 
@@ -54,7 +55,7 @@ public class AlterarPessoaJuridica extends HttpServlet {
             pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
             pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
             pessoaJuridica.setIdPessoa(idPessoa);
-            pessoaJuridica.setTipoPessoaJuridica(tipoPessoaJuridica);
+            pessoaJuridica.setTipoPessoaJuridica(new TipoPessoaJuridica(idTipoPessoaJuridica));
 
             try {
                 GenericDAO dao = new PessoaJuridicaDAO();

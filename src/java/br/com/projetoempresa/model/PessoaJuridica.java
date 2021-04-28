@@ -7,12 +7,12 @@ public class PessoaJuridica extends Pessoa{
     private int idPessoaJuridica;
     private String cnpjPessoaJuridica;
     private String iePessoaJuridica;
-    private String tipoPessoaJuridica;
+    private TipoPessoaJuridica tipoPessoaJuridica;
 
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, String tipoPessoaJuridica) {
+    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, TipoPessoaJuridica tipoPessoaJuridica) {
         this.idPessoaJuridica = idPessoaJuridica;
         this.cnpjPessoaJuridica = cnpjPessoaJuridica;
         this.iePessoaJuridica = iePessoaJuridica;
@@ -43,11 +43,11 @@ public class PessoaJuridica extends Pessoa{
         this.iePessoaJuridica = iePessoaJuridica;
     }
 
-    public String getTipoPessoaJuridica() {
+    public TipoPessoaJuridica getTipoPessoaJuridica() {
         return tipoPessoaJuridica;
     }
 
-    public void setTipoPessoaJuridica(String tipoPessoaJuridica) {
+    public void setTipoPessoaJuridica(TipoPessoaJuridica tipoPessoaJuridica) {
         this.tipoPessoaJuridica = tipoPessoaJuridica;
     }
 

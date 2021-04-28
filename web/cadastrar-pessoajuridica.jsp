@@ -41,7 +41,13 @@
 
                 <tr>
                     <td>Tipo:</td>
-                    <td><input type="text" name="tipoPessoaJuridica"></td>
+                    <td>
+                        <select name="idTipoPessoaJuridica">
+                            <c:forEach var="tipo" items="${tipos}">
+                                <option value="${tipo.idTipoPessoaJuridica}">${tipo.nomeTipoPessoaJuridica}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 
                 <tr>
