@@ -63,7 +63,7 @@ public class CadastrarPessoaJuridica extends HttpServlet {
                             + "Verifique os dados informados e tente novamente!";
                 }
                 request.setAttribute("mensagem", msg);
-                request.getRequestDispatcher("cadastrar-pessoajuridica.jsp").forward(request, response);
+                request.getRequestDispatcher("TipoPessoaJuridica").forward(request, response);
             } catch (Exception ex) {
                 System.out.println("Problemas ao cadastrar PessoaJurídica CTR! Erro: " + ex.getMessage());
                 ex.printStackTrace();

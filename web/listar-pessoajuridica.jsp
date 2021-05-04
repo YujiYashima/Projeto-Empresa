@@ -44,7 +44,7 @@
                 <td align="center"><%=pessoaJuridica.getTelefonePessoa()%></td>
                 <td align="center"><%=pessoaJuridica.getCnpjPessoaJuridica()%></td>
                 <td align="center"><%=pessoaJuridica.getIePessoaJuridica()%></td>
-                <td align="center"><%=pessoaJuridica.getTipoPessoaJuridica()%></td>
+                <td align="center"><%=pessoaJuridica.getTipoPessoaJuridica().getNomeTipoPessoaJuridica()%></td>
                 <td align="center"><a href="CarregarPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>">Alterar</a></td>
                 <td align="center"><a href="ExcluirPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>">Excluir</a></td>
             </tr>
