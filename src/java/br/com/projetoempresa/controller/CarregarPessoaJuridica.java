@@ -7,6 +7,7 @@ package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaDAO;
+import br.com.projetoempresa.dao.TipoPessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,11 +37,15 @@ public class CarregarPessoaJuridica extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
-            int idPessoaJuridica = Integer.parseInt(request.getParameter("idPessoa"));
+            Integer idPessoaJuridica = Integer.parseInt(request.getParameter("idPessoa"));
             
             try{
                 GenericDAO dao = new PessoaJuridicaDAO();
                 request.setAttribute("pessoaJuridica", dao.carregar(idPessoaJuridica));
+                
+                dao = new TipoPessoaJuridicaDAO();
+                request.setAttribute("tipospessoasjuridicas", dao.listar());
+                
                 //Verei se crio uma nova pagina ou se uso o própio cadastrar
                 request.getRequestDispatcher("alterar-pessoajuridica.jsp").forward(request, response);
             }catch(Exception e){

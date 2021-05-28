@@ -25,3 +25,5 @@ create table PESSOAJURIDICA(
 	constraint fk_pj_pessoa foreign key(idPessoa) references pessoa(idPessoa)
 );
 
+insert into TIPOPESSOAJURIDICA(nomeTipoPessoaJuridica) values('MEI');
+insert into TIPOPESSOAJURIDICA(nomeTipoPessoaJuridica) values('S.A');

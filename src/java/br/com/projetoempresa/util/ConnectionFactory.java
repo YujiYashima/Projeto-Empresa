@@ -13,7 +13,7 @@ public class ConnectionFactory {
         try {
             //Carrega do driver do postegresql
             Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdempresa", "postgres", "postdba");
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/dbempresa", "postgres", "postdba");
         } catch (Exception e) {
             //manda uma mensagem de erro
             throw new Exception(e.getMessage());

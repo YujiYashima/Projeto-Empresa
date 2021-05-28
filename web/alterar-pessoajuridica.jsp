@@ -54,15 +54,12 @@
                 
                 <tr>
                     <td>Tipo:</td>
-                    <td><input type="text" name="tipoPessoaJuridica" value="${pessoaJuridica.tipoPessoaJuridica}"></td>
-                </tr>
-                
-                <tr>
-                    <td>Tipo:</td>
                     <td>
                         <select name="idTipoPessoaJuridica">
-                            <c:forEach var="tipo" items="${tipos}">
-                                <option value="${tipo.idTipoPessoaJuridica}">${tipo.nomeTipoPessoaJuridica}</option>
+                            <c:forEach var="tipo" items="${tipospessoasjuridicas}">
+                                <option value="${tipo.idTipoPessoaJuridica}">
+                                    ${tipo.idTipoPessoaJuridica == pessoaJuridica.tipoPessoaJuridica.idTipoPessoaJuridica ? 'selected' : ''}
+                                    ${tipo.nomeTipoPessoaJuridica}</option>
                             </c:forEach>
                         </select>
                     </td>

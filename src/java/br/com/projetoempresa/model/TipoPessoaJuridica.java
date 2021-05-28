@@ -12,10 +12,6 @@ public class TipoPessoaJuridica {
         this.idTipoPessoaJuridica = idTipoPessoaJuridica;
     }
 
-    public TipoPessoaJuridica(String nomeTipoPessoaJuridica) {
-        this.nomeTipoPessoaJuridica = nomeTipoPessoaJuridica;
-    }
-
     public TipoPessoaJuridica(Integer idTipoPessoaJuridica, String nomeTipoPessoaJuridica) {
         this.idTipoPessoaJuridica = idTipoPessoaJuridica;
         this.nomeTipoPessoaJuridica = nomeTipoPessoaJuridica;

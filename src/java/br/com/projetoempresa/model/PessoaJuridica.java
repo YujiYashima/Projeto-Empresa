@@ -4,7 +4,7 @@ package br.com.projetoempresa.model;
 public class PessoaJuridica extends Pessoa{
 
     //Atributos da Class
-    private int idPessoaJuridica;
+    private Integer idPessoaJuridica;
     private String cnpjPessoaJuridica;
     private String iePessoaJuridica;
     private TipoPessoaJuridica tipoPessoaJuridica;
@@ -12,7 +12,7 @@ public class PessoaJuridica extends Pessoa{
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(int idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, TipoPessoaJuridica tipoPessoaJuridica) {
+    public PessoaJuridica(Integer idPessoaJuridica, String cnpjPessoaJuridica, String iePessoaJuridica, TipoPessoaJuridica tipoPessoaJuridica) {
         this.idPessoaJuridica = idPessoaJuridica;
         this.cnpjPessoaJuridica = cnpjPessoaJuridica;
         this.iePessoaJuridica = iePessoaJuridica;
@@ -23,7 +23,7 @@ public class PessoaJuridica extends Pessoa{
         return idPessoaJuridica;
     }
 
-    public void setIdPessoaJuridica(int idPessoaJuridica) {
+    public void setIdPessoaJuridica(Integer idPessoaJuridica) {
         this.idPessoaJuridica = idPessoaJuridica;
     }
 

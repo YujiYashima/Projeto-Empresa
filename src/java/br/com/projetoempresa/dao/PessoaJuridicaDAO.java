@@ -149,7 +149,7 @@ public class PessoaJuridicaDAO implements GenericDAO {
         ResultSet rs = null;
         PessoaJuridica pessoaJuridica = null;
         
-        String sql = "select u.*, p.* from pessoaJuridica u, pessoa p where u.idpessoa = p.idpessoa and u.idpessoa = ?;";
+        String sql = "select u.*, p.*, t.* from pessoaJuridica u, pessoa p, tipopessoajuridica t where u.idpessoa = p.idpessoa and t.idtipopessoajuridica = u.idtipopessoajuridica and u.idpessoa = ?;";
         
         try {
             stmt = conn.prepareStatement(sql);
@@ -163,7 +163,7 @@ public class PessoaJuridicaDAO implements GenericDAO {
                 pessoaJuridica.setTelefonePessoa(rs.getString("telefonepessoa"));
                 pessoaJuridica.setCnpjPessoaJuridica(rs.getString("cnpjPessoaJuridica"));
                 pessoaJuridica.setIePessoaJuridica(rs.getString("iePessoaJuridica"));
-                pessoaJuridica.setTipoPessoaJuridica(new TipoPessoaJuridica(rs.getInt("idTipoPessoaJuridica"), rs.getString("nomeTipoPessoaJuridica")));
+                pessoaJuridica.setTipoPessoaJuridica(new TipoPessoaJuridica(rs.getInt("idTipoPessoaJuridica")));
                 pessoaJuridica.setIdPessoa(rs.getInt("idPessoa"));
             }
         } catch (SQLException ex) {
