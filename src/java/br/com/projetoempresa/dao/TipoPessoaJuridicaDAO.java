@@ -29,8 +29,22 @@ public class TipoPessoaJuridicaDAO implements GenericDAO{
     }
 
     @Override
+    public Boolean excluir(int idOject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object carregar(int idObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean alterar(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public List<Object> listar() {
-        
         List<Object> tiposPessoaJuridica = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs  = null;
@@ -60,19 +74,4 @@ public class TipoPessoaJuridicaDAO implements GenericDAO{
         return tiposPessoaJuridica;
     }
 
-    @Override
-    public Boolean excluir(int idOject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object carregar(int idObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean alterar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
