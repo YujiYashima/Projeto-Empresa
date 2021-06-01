@@ -55,13 +55,14 @@
                 <tr>
                     <td>Tipo:</td>
                     <td>
-                        <select name="idTipoPessoaJuridica">
+                        <input list="tipoPJ" name="idTipoPessoaJuridica">
+                        <datalist id="tipoPJ">
                             <c:forEach var="tipo" items="${tipospessoasjuridicas}">
                                 <option value="${tipo.idTipoPessoaJuridica}">
                                     ${tipo.idTipoPessoaJuridica == pessoaJuridica.tipoPessoaJuridica.idTipoPessoaJuridica ? 'selected' : ''}
                                     ${tipo.nomeTipoPessoaJuridica}</option>
                             </c:forEach>
-                        </select>
+                        </datalist>
                     </td>
                 </tr>
                 
