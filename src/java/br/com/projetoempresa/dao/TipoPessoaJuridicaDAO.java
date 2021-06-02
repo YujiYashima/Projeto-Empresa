@@ -1,5 +1,6 @@
 package br.com.projetoempresa.dao;
 
+import br.com.projetoempresa.model.PessoaJuridica;
 import br.com.projetoempresa.model.TipoPessoaJuridica;
 import br.com.projetoempresa.util.ConnectionFactory;
 import java.sql.Connection;
@@ -25,7 +26,35 @@ public class TipoPessoaJuridicaDAO implements GenericDAO{
 
     @Override
     public Boolean cadastrar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TipoPessoaJuridica tipoPessoaJuridica = (TipoPessoaJuridica) object;
+        PreparedStatement stmt = null;
+
+        String sql = "Insert into TipoPessoaJuridica(nomeTipoPessoaJuridica) "
+                + "values (?);";
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, tipoPessoaJuridica.getNomeTipoPessoaJuridica());
+            stmt.execute();
+
+            return true;
+
+        } catch (Exception err) {
+
+            System.out.println("Problemas ao cadastrar PessoaJuridicaDAO! Erro: " + err.getMessage());
+            err.printStackTrace();
+
+            return false;
+
+        } finally {
+
+            try {
+                ConnectionFactory.closeConnection(conn, stmt);
+            } catch (Exception ex) {
+                System.out.println("Problemas ao fechar a conexão! Erro: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
     }
 
     @Override
