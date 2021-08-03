@@ -2,7 +2,6 @@ package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.ServicoDAO;
-import br.com.projetoempresa.dao.TipoPessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Yuji adm
  */
-@WebServlet(name = "TipoPessoaJuridica", urlPatterns = {"/TipoPessoaJuridica"})
-public class TipoPessoaJuridica extends HttpServlet {
+@WebServlet(name = "ServicoPJ", urlPatterns = {"/ServicoPJ"})
+public class ServicoPessoaJuridica extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +30,15 @@ public class TipoPessoaJuridica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            try{
-                GenericDAO dao = new TipoPessoaJuridicaDAO();
-                request.setAttribute("tipos", dao.listar());
-                
-                GenericDAO daoServico = new ServicoDAO();
-                request.setAttribute("servicos", daoServico.listar());
-                
-                request.getRequestDispatcher("cadastrar-pessoajuridica.jsp").forward(request, response);
-            }catch(Exception e){
-                System.out.println("Problemas ao carregas os dados dos TipoPessoaJuridica CTR! Erro: " + e.getMessage());
+
+            try {
+                GenericDAO dao = new ServicoDAO();
+                request.setAttribute("servicos", dao.listar());
+            } catch (Exception ex) {
+                System.out.println("Problemas ao listar Serviços CTR! Erro: " + ex.getMessage());
+                ex.printStackTrace();
             }
+            request.getRequestDispatcher("listar-servico.jsp").forward(request, response);
         }
     }
 

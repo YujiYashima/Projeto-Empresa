@@ -2,7 +2,10 @@ package br.com.projetoempresa.controller;
 
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaDAO;
+import br.com.projetoempresa.dao.PessoaJuridicaServicoDAO;
 import br.com.projetoempresa.model.PessoaJuridica;
+import br.com.projetoempresa.model.PessoaJuridicaServico;
+import br.com.projetoempresa.model.Servico;
 import br.com.projetoempresa.model.TipoPessoaJuridica;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,17 +35,19 @@ public class CadastrarPessoaJuridica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             //Obter os valores digitados no formulário
             String nomePessoaJuridica = request.getParameter("nomePessoaJuridica");
             String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
             String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
             String iePessoaJuridica = request.getParameter("iePessoaJuridica");
+            String[] idServico = request.getParameterValues("idServico");
+            int qntServicos = idServico.length;
             Integer idTipoPessoaJuridica = Integer.parseInt(request.getParameter("idTipoPessoaJuridica"));
-            
+
             //Incicializar variavel de mensagem
             String msg = null;
-            
+
             //Inicializar objeto e atribuir valores a ele
             PessoaJuridica pessoaJuridica = new PessoaJuridica();
             pessoaJuridica.setNomePessoa(nomePessoaJuridica);
@@ -50,18 +55,37 @@ public class CadastrarPessoaJuridica extends HttpServlet {
             pessoaJuridica.setCnpjPessoaJuridica(cnpjPessoaJuridica);
             pessoaJuridica.setIePessoaJuridica(iePessoaJuridica);
             pessoaJuridica.setTipoPessoaJuridica(new TipoPessoaJuridica(idTipoPessoaJuridica));
-            
+
+            Integer idPJ = null;
+
             //Cadastrar uma PessoaJuridica na DAO
             try {
-                GenericDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
-                if (pessoaJuridicaDAO.cadastrar(pessoaJuridica)) {
-                    //Se o cadastro for um sucesso, ele retornar TRUE
-                    msg = "Usuário cadastrado com sucesso!";
+                PessoaJuridicaDAO dao = new PessoaJuridicaDAO();
+                idPJ = dao.cadastrarPessoaJuridica(pessoaJuridica);
+
+                if (idPJ > 0) {
+                    pessoaJuridica.setIdPessoaJuridica(idPJ);
+
+                    for (int i = 0; i < qntServicos; i++) {
+
+                        PessoaJuridicaServico pessoaJuridicaServico = new PessoaJuridicaServico();
+                        pessoaJuridicaServico.setServico(new Servico(Integer.parseInt(idServico[i])));
+                        pessoaJuridicaServico.setPessoajuridica(pessoaJuridica);
+
+                        GenericDAO pessoaJuridicaServicoDAO = new PessoaJuridicaServicoDAO();
+                        if (pessoaJuridicaServicoDAO.cadastrar(pessoaJuridicaServico)) {
+                            msg = "PessoaJuridica cadastrado com sucesso!";
+                        } else {
+                            msg = "Problemas ao cadastrar PessoaJuridica. "
+                                    + "Verifique os dados informados e tente novamente!";
+                        }
+
+                    }
                 } else {
-                    //Senao retorna FALSE
                     msg = "Problemas ao cadastrar PessoaJuridica. "
-                            + "Verifique os dados informados e tente novamente!";
+                                    + "Verifique os dados informados e tente novamente!";
                 }
+
                 request.setAttribute("mensagem", msg);
                 request.getRequestDispatcher("TipoPessoaJuridica").forward(request, response);
             } catch (Exception ex) {

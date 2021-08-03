@@ -26,15 +26,20 @@ public class PessoaJuridicaDAO implements GenericDAO {
 
     @Override
     //Cadastrar
-    public Boolean cadastrar(Object object) {
-
-        //Cria a classe que vai obter os dados digitados pelo pessoaJuridica
+    public Boolean cadastrar(Object object) {       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Integer cadastrarPessoaJuridica(Object object) {
+    
         PessoaJuridica pessoaJuridica = (PessoaJuridica) object;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Integer idPessoaJuridica = null;
 
         //Cria o comando SQL para o resgistro desses dados
         String sql = "Insert into pessoajuridica(cnpjpessoajuridica, iepessoajuridica, idtipopessoajuridica, idpessoa) "
-                + "values (?, ?, ?, ?);";
+                + "values (?, ?, ?, ?) RETURNING idPessoaJuridica;";
 
         try {
 
@@ -45,17 +50,18 @@ public class PessoaJuridicaDAO implements GenericDAO {
             stmt.setInt(3, pessoaJuridica.getTipoPessoaJuridica().getIdTipoPessoaJuridica());
             //Obtem o codigo da PessoaDAO, apos cadastrar nela o objeto pessoaJuridica 
             stmt.setInt(4, new PessoaDAO().cadastrar(pessoaJuridica));
-            stmt.execute();
+            
+            rs = stmt.executeQuery();
 
-            return true;
+            if (rs.next()) {
+                idPessoaJuridica = rs.getInt("idPessoaJuridica");
+            }
 
         } catch (Exception err) {
 
             //Retorna o possivel erro
             System.out.println("Problemas ao cadastrar PessoaJuridicaDAO! Erro: " + err.getMessage());
             err.printStackTrace();
-
-            return false;
 
         } finally {
 
@@ -67,6 +73,9 @@ public class PessoaJuridicaDAO implements GenericDAO {
                 ex.printStackTrace();
             }
         }
+        
+        return idPessoaJuridica;
+    
     }
 
     @Override
