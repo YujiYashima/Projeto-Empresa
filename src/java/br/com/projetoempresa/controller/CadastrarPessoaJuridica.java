@@ -3,12 +3,15 @@ package br.com.projetoempresa.controller;
 import br.com.projetoempresa.dao.GenericDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaDAO;
 import br.com.projetoempresa.dao.PessoaJuridicaServicoDAO;
+import br.com.projetoempresa.dao.ServicoDAO;
 import br.com.projetoempresa.model.PessoaJuridica;
 import br.com.projetoempresa.model.PessoaJuridicaServico;
 import br.com.projetoempresa.model.Servico;
 import br.com.projetoempresa.model.TipoPessoaJuridica;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,20 +38,17 @@ public class CadastrarPessoaJuridica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            //Obter os valores digitados no formulário
+                     
             String nomePessoaJuridica = request.getParameter("nomePessoaJuridica");
             String telefonePessoaJuridica = request.getParameter("telefonePessoaJuridica");
             String cnpjPessoaJuridica = request.getParameter("cnpjPessoaJuridica");
             String iePessoaJuridica = request.getParameter("iePessoaJuridica");
-            String[] idServico = request.getParameterValues("idServico");
-            int qntServicos = idServico.length;
+            String[] servicos = request.getParameterValues("servicos");
+            int qntServicos = servicos.length;
             Integer idTipoPessoaJuridica = Integer.parseInt(request.getParameter("idTipoPessoaJuridica"));
 
-            //Incicializar variavel de mensagem
             String msg = null;
 
-            //Inicializar objeto e atribuir valores a ele
             PessoaJuridica pessoaJuridica = new PessoaJuridica();
             pessoaJuridica.setNomePessoa(nomePessoaJuridica);
             pessoaJuridica.setTelefonePessoa(telefonePessoaJuridica);
@@ -58,7 +58,6 @@ public class CadastrarPessoaJuridica extends HttpServlet {
 
             Integer idPJ = null;
 
-            //Cadastrar uma PessoaJuridica na DAO
             try {
                 PessoaJuridicaDAO dao = new PessoaJuridicaDAO();
                 idPJ = dao.cadastrarPessoaJuridica(pessoaJuridica);
@@ -69,7 +68,7 @@ public class CadastrarPessoaJuridica extends HttpServlet {
                     for (int i = 0; i < qntServicos; i++) {
 
                         PessoaJuridicaServico pessoaJuridicaServico = new PessoaJuridicaServico();
-                        pessoaJuridicaServico.setServico(new Servico(Integer.parseInt(idServico[i])));
+                        pessoaJuridicaServico.setServico(new Servico(Integer.parseInt(servicos[i])));
                         pessoaJuridicaServico.setPessoajuridica(pessoaJuridica);
 
                         GenericDAO pessoaJuridicaServicoDAO = new PessoaJuridicaServicoDAO();

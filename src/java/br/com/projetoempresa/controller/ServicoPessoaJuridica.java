@@ -32,7 +32,7 @@ public class ServicoPessoaJuridica extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             try {
-                GenericDAO dao = new ServicoDAO();
+                ServicoDAO dao = new ServicoDAO();
                 request.setAttribute("servicos", dao.listar());
             } catch (Exception ex) {
                 System.out.println("Problemas ao listar Serviços CTR! Erro: " + ex.getMessage());

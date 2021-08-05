@@ -43,8 +43,8 @@ public class CarregarPessoaJuridica extends HttpServlet {
                 GenericDAO dao = new PessoaJuridicaDAO();
                 request.setAttribute("pessoaJuridica", dao.carregar(idPessoaJuridica));
                 
-                dao = new TipoPessoaJuridicaDAO();
-                request.setAttribute("tipospessoasjuridicas", dao.listar());
+                TipoPessoaJuridicaDAO tipoDAO = new TipoPessoaJuridicaDAO();
+                request.setAttribute("tipospessoasjuridicas", tipoDAO.listar());
                 
                 //Verei se crio uma nova pagina ou se uso o própio cadastrar
                 request.getRequestDispatcher("alterar-pessoajuridica.jsp").forward(request, response);

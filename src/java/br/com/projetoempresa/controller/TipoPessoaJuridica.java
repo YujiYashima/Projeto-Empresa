@@ -33,11 +33,11 @@ public class TipoPessoaJuridica extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             try{
-                GenericDAO dao = new TipoPessoaJuridicaDAO();
-                request.setAttribute("tipos", dao.listar());
+                TipoPessoaJuridicaDAO tipoDAO = new TipoPessoaJuridicaDAO();
+                request.setAttribute("tipos", tipoDAO.listar());
                 
-                GenericDAO daoServico = new ServicoDAO();
-                request.setAttribute("servicos", daoServico.listar());
+                ServicoDAO servicoDAO = new ServicoDAO();
+                request.setAttribute("servicos", servicoDAO.listar());
                 
                 request.getRequestDispatcher("cadastrar-pessoajuridica.jsp").forward(request, response);
             }catch(Exception e){

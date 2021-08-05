@@ -45,6 +45,7 @@ create table PESSOAJURIDICA_SERVICO(
 
 insert into TIPOPESSOAJURIDICA(nomeTipoPessoaJuridica) values('MEI');
 insert into TIPOPESSOAJURIDICA(nomeTipoPessoaJuridica) values('S.A');
+insert into TIPOPESSOAJURIDICA(nomeTipoPessoaJuridica) values('LTDA');
 insert into SERVICO(nomeServico, valorServico, descricaoServico) values('Limpeza', 1000.00, 'Limpeza geral de qualquer local');
 insert into SERVICO(nomeServico, valorServico, descricaoServico) values('Treinamento', 500.00, 'Treinamento de funcionários e estagiários');
 insert into SERVICO(nomeServico, valorServico, descricaoServico) values('Marketing', 3000.00, 'Marketing, redes sociais e serviços de divulgação');

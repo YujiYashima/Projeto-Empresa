@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gerenciamento de Pessoa Juridica</title>
+        <link rel="stylesheet" href="css/imagens.css">
     </head>
     <body>
         <h1 align="center">Projeto Empresa</h1>
@@ -45,8 +46,8 @@
                 <td align="center"><%=pessoaJuridica.getCnpjPessoaJuridica()%></td>
                 <td align="center"><%=pessoaJuridica.getIePessoaJuridica()%></td>
                 <td align="center"><%=pessoaJuridica.getTipoPessoaJuridica().getNomeTipoPessoaJuridica()%></td>
-                <td align="center"><a href="CarregarPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>">Alterar</a></td>
-                <td align="center"><a href="ExcluirPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>">Excluir</a></td>
+                <td align="center"><a href="CarregarPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>"><img src="img/edit.PNG" alt="Alterar" class="img"></a></td>
+                <td align="center"><a href="ExcluirPessoaJuridica?idPessoa=<%=pessoaJuridica.getIdPessoaJuridica()%>"><img src="img/quit.png" alt="Excluir" class="img"></a></td>
             </tr>
 
             <%

@@ -14,7 +14,7 @@ import java.util.List;
  * @author Yuji adm
  */
 
-public class ServicoDAO implements GenericDAO{
+public class ServicoDAO {
     
     private Connection conn;
     
@@ -27,18 +27,12 @@ public class ServicoDAO implements GenericDAO{
         }
     }
 
-    @Override
-    public Boolean cadastrar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Object> listar() {
         
         List<Object> servicos = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT s.* FROM servico s ORDER BY s.nomeservico;";
+        String sql = "SELECT s.* FROM servico s ORDER BY s.idservico;";
         
         try {
             stmt = conn.prepareStatement(sql);
@@ -65,20 +59,5 @@ public class ServicoDAO implements GenericDAO{
         }
         return servicos;
     }
-
-    @Override
-    public Boolean excluir(int idOject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object carregar(int idObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean alterar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
+    
 }

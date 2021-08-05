@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TipoPessoaJuridicaDAO implements GenericDAO{
+public class TipoPessoaJuridicaDAO {
     
     private Connection conn;
 
@@ -24,27 +24,6 @@ public class TipoPessoaJuridicaDAO implements GenericDAO{
         }
     }
 
-    @Override
-    public Boolean cadastrar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean excluir(int idOject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object carregar(int idObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean alterar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Object> listar() {
         List<Object> tiposPessoaJuridica = new ArrayList<>();
         PreparedStatement stmt = null;

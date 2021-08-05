@@ -5,8 +5,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar Pessoa Jurídica</title>
-        <script type="text/javascript" src="script/jquery-1.10.1.js"></script>
-        <script type="text/javascript" src="script/jquery.validate.min.js"></script>
     </head>
     <body>
         <h1 align="center">Projeto Empresa</h1>
@@ -52,34 +50,16 @@
                         </datalist>
                     </td>
                 </tr>
-
-                <tr class="wrapper">                    
-                    <td>Serviços: </td>
-                    <td class="toclone">
-                        <select name="idServico">
-                            <c:forEach var="servico" items="${servicos}">
-                                <option value="${servico.idServico}">${servico.nomeServico}</option>
-                            </c:forEach>
-                        </select>
-                        <button type="button" class="add">+</button>
-                        <button type="button" class="remove">-</button>
+                
+                <tr>
+                    <td>Serviços:</td>
+                    <td>
+                        <c:forEach var="servico" items="${servicos}">
+                            <input type="checkbox" name="servicos" id="${servico.idServico}" value="${servico.idServico}">
+                            <label for="${servico.idServico}">${servico.nomeServico}</label><br>
+                        </c:forEach>
                     </td>
                 </tr>
-
-                <script type="text/javascript">
-                    function adicionar() {
-                        var ElementoClonado = $(this.parentNode).clone(); //clona o elemento                                                                      
-                        $('.wrapper').append(ElementoClonado);
-                        $('.add').on("click", adicionar);
-                        $('.remove').on("click", remover);
-                        $(this).unbind("click");
-                    }
-                    function remover() {
-                        $(this.parentNode).remove();
-                    }
-                    $('.add').on("click", adicionar);
-                    $('.remove').on("click", remover);
-                </script>
 
                 <tr>
                     <td colspan="2" align="center">
